@@ -1,6 +1,7 @@
 from argparse import ArgumentParser
 from backends.factory import create_serializer
 from finance import get_prices
+from gnucash import Price
 
 parser = ArgumentParser()
 parser.add_argument("-b", "--backend", type=str, default="xml.gz")
@@ -13,13 +14,19 @@ def main():
 
     stocks = serializer.get_stocks()
     xcodes = [stock.xcode for stock in stocks]
-    prices = get_prices(xcodes)
+    raw_prices = get_prices(xcodes)
 
-    price_arr = []
+    prices = []
     for stock in stocks:
-        price_arr.append((stock, prices['Close'][stock.xcode].item()))
+        prices.append(
+            Price(
+                stock=stock,
+                currency=args.currency,
+                value=raw_prices['Close'][stock.xcode].item()
+            )
+        )
 
-    serializer.write_prices(price_arr, args.currency)
+    serializer.write_prices(prices)
     serializer.save()
 
 if __name__ == "__main__":

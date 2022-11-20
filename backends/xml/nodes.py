@@ -6,7 +6,7 @@ PRICE_NODE = '''<price>
     </price:commodity>
     <price:currency>
         <cmdty:space>CURRENCY</cmdty:space>
-        <cmdty:id>EUR</cmdty:id>
+        <cmdty:id>{currency}</cmdty:id>
     </price:currency>
     <price:time>
         <ts:date>{date}</ts:date>

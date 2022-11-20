@@ -37,22 +37,23 @@ class Serializer:
         mmapped_file.seek(original_pos)
         return target_pos
 
-    def __build_price_text(self, prices):
+    def __build_price_text(self, prices, currency):
         now = datetime.now(timezone.utc)
         price_nodes = []
         for price in prices:
             price_nodes.append(
                 PRICE_NODE.format(
+                    currency=currency,
                     date=now.strftime("%Y-%m-%d %H:%M:%S %z"),
                     id=uuid.uuid4().hex,
                     ticker=price[0].ticker,
-                    value=price[1]
+                    value="{:.2f}".format(price[1])
                 )
             )
         return os.linesep.join(price_nodes) + os.linesep
 
-    def write_prices(self, prices):
-        price_text = self.__build_price_text(prices)
+    def write_prices(self, prices, currency):
+        price_text = self.__build_price_text(prices, currency)
         with open(self.temp_file.name, 'r+', encoding='utf-8') as f:
             price_bytes = str.encode(price_text, encoding="utf-8")
             file_size = os.path.getsize(f.name)
@@ -63,3 +64,8 @@ class Serializer:
                 mmapped_file.seek(target_pos)
                 mmapped_file.write(price_bytes)
                 mmapped_file.flush()
+    
+    def save(self):
+        with open(self.temp_file.name, 'rb') as f:
+            with gzip.open(self.filename, 'wb') as compressed_file:
+                shutil.copyfileobj(f, compressed_file)

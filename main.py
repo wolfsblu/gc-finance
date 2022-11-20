@@ -16,15 +16,11 @@ def main():
     xcodes = [stock.xcode for stock in stocks]
     raw_prices = get_prices(xcodes)
 
-    prices = []
-    for stock in stocks:
-        prices.append(
-            Price(
-                stock=stock,
-                currency=args.currency,
-                value=raw_prices['Close'][stock.xcode].item()
-            )
-        )
+    prices = [Price(
+        stock=stock,
+        currency=args.currency,
+        value=raw_prices['Close'][stock.xcode].item()
+    ) for stock in stocks]
 
     serializer.write_prices(prices)
     serializer.save()

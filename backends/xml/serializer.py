@@ -5,9 +5,9 @@ import uuid
 import os
 import xml.etree.ElementTree as ET
 import mmap
-from datetime import datetime, timezone
 
-from .nodes import PRICE_NODE
+from datetime import datetime, timezone
+from backends.xml.nodes import PRICE_NODE
 from gnucash import Stock
 
 

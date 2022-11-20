@@ -1,8 +1,8 @@
 class Stock:
-    def __init__(self, ticker, name, isin):
+    def __init__(self, ticker, name, xcode):
         self.ticker = ticker
         self.name = name
-        self.isin = isin
+        self.xcode = xcode
     
     def __repr__(self):
         return str(self)

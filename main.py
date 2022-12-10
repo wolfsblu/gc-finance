@@ -22,12 +22,12 @@ async def main():
     prices = []
     for isin, chart in tickers:
         stock = next(item for item in stocks if item.xcode == isin)
-        value_eur = await convert(chart["regularMarketPrice"], chart["currency"], args.currency)
-        prices.append(Price(
-            stock = stock,
-            currency = args.currency,
-            value = value_eur,
-        ))
+        value = await convert(
+            chart["regularMarketPrice"], 
+            from_symbol = chart["currency"], 
+            to_symbol = args.currency,
+        )
+        prices.append(Price(stock, args.currency, value))
 
     serializer.write_prices(prices)
     serializer.save()

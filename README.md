@@ -1,10 +1,10 @@
 # Readme
 
-This is a python module for retrieving stock prices for GNU Cash books.
-The script uses `aiohttp` to fetch the price for your securities from
-the Yahoo Finance API at the last close and adds it to your price database.  
-Additionally it uses the [Forex API](https://theforexapi.com) to convert 
-asset currencies to your local GNU Cash book currency.
+This is a python module retrieving stock prices for GNU Cash books.
+The script uses `aiohttp` to fetch the prices of your securities from
+the Yahoo Finance API and adds them to your price database. Additionally
+it uses the [Forex API](https://theforexapi.com) to convert asset currencies
+to your local GNU Cash book currency.
 
 **Note** the terms of use of the Yahoo API for developers
 * [Yahoo Developer API Terms of Use](https://legal.yahoo.com/us/en/yahoo/terms/product-atos/apiforydn/index.html)

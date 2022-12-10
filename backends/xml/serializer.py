@@ -18,6 +18,10 @@ class Serializer:
             with tempfile.TemporaryFile('r+b', delete=False) as self.temp_file:
                 shutil.copyfileobj(compressed_file, self.temp_file)
 
+    def __del__(self):
+        if self.temp_file is not None and os.path.isfile(self.temp_file.name):
+            os.remove(self.temp_file.name)
+
     def get_stocks(self):
         stocks = []
         for _, elem in ET.iterparse(self.temp_file.name):

@@ -11,7 +11,7 @@ PRICE_NODE = '''<price>
     <price:time>
         <ts:date>{date}</ts:date>
     </price:time>
-    <price:source>user:price-editor</price:source>
+    <price:source>gc-finance</price:source>
     <price:type>last</price:type>
     <price:value>{value}</price:value>
 </price>'''

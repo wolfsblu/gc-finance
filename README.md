@@ -16,13 +16,16 @@ currencies to your local GNU Cash book currency.
 ## Requirements
 * Requires Python >= 3.6 (due to `aiohttp`)
 * Requires `pip` for dependency management
+* A (free) API key for the Tradermade forex API
 
 ## Installation
-```
-python -m venv .venv
-.\.venv\Scripts\activate
-pip install -r requirements.txt
-```
+1. Install dependencies  
+   ```
+   python -m venv .venv
+   .\.venv\Scripts\activate
+   pip install -r requirements.txt
+   ```
+1. Copy the `.env.example` file to `.env` and add your API key
 
 # Usage
 ```

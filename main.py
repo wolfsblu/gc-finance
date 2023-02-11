@@ -2,9 +2,13 @@ import asyncio
 
 from argparse import ArgumentParser
 from backends.factory import create_serializer
+from dotenv import load_dotenv
 from finance import get_tickers
 from forex import convert
 from gnucash import Price
+
+
+load_dotenv()
 
 parser = ArgumentParser()
 parser.add_argument("-b", "--backend", type=str, default="xml.gz")

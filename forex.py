@@ -1,13 +1,22 @@
 import aiohttp
 import json
+import os
 
+
+rates = dict()
 
 async def get_rate(from_symbol, to_symbol, session):
-    url = f"https://theforexapi.com/api/latest?base={from_symbol}&symbols={to_symbol}"
+    key = f"{from_symbol}-{to_symbol}"
+    if key in rates:
+        return rates[key]
+
+    api_key = os.environ.get("FOREX_API_KEY")
+    url = f"https://marketdata.tradermade.com/api/v1/convert?api_key={api_key}&from={from_symbol}&to={to_symbol}&amount=1"
     async with session.get(url) as resp:
         text = await resp.text()
         data = json.loads(text)
-        rate = data["rates"][to_symbol]
+        rate = data["quote"]
+        rates[key] = rate
         return rate
 
 async def convert(value, from_symbol="USD", to_symbol="USD"):

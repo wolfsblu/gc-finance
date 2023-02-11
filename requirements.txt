@@ -10,4 +10,5 @@ idna==3.4
 multidict==6.0.3
 pycares==4.2.2
 pycparser==2.21
+python-dotenv==0.21.1
 yarl==1.8.2

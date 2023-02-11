@@ -3,8 +3,8 @@
 This is a python module retrieving stock prices for GNU Cash books.
 The script uses `aiohttp` to fetch the prices of your securities from
 the Yahoo Finance API and adds them to your price database. Additionally
-it uses the [Forex API](https://theforexapi.com) to convert asset currencies
-to your local GNU Cash book currency.
+it uses the [Tradermade API](https://tradermade.com/forex) to convert asset 
+currencies to your local GNU Cash book currency.
 
 **Note** the terms of use of the Yahoo API for developers
 * [Yahoo Developer API Terms of Use](https://legal.yahoo.com/us/en/yahoo/terms/product-atos/apiforydn/index.html)
@@ -19,8 +19,8 @@ to your local GNU Cash book currency.
 
 ## Installation
 ```
-python -m venv .env
-.\.env\Scripts\activate
+python -m venv .venv
+.\.venv\Scripts\activate
 pip install -r requirements.txt
 ```
 
@@ -32,6 +32,6 @@ python main.py --backend xml.gz --currency EUR .\database.gnucash
 
 # Limitations
 
-1. Without a valid ISIN configured for your security the script will not 
+1. Without a valid ISIN configured for your asset the script will not 
    be able to fetch prices
 1. The only backend that is currently supported is `xml.gz` files

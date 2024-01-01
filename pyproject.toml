@@ -1,0 +1,45 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "gc-finance"
+version = "0.1.0"
+authors = [
+  { name="Lukas Wolfsberger", email="1245519+wolfsblu@users.noreply.github.com" },
+]
+license = "Apache-2.0"
+description = "Python module retrieving prices for GNU Cash stocks"
+readme = "README.md"
+requires-python = ">=3.8"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: Apache Software License",
+    "Operating System :: OS Independent",
+]
+dependencies = [
+  "aiodns==3.0.0",
+  "aiohttp==3.8.3",
+  "aiosignal==1.3.1",
+  "async-timeout==4.0.2",
+  "attrs==22.1.0",
+  "cffi==1.15.1",
+  "charset-normalizer==2.1.1",
+  "frozenlist==1.3.3",
+  "idna==3.4",
+  "multidict==6.0.3",
+  "pycares==4.2.2",
+  "pycparser==2.21",
+  "python-dotenv==0.21.1",
+  "yarl==1.8.2"
+]
+
+[project.urls]
+Homepage = "https://github.com/wolfsblu/gc-finance"
+Issues = "https://github.com/wolfsblu/gc-finance/issues"
+
+[project.scripts]
+gc-finance = "gc-finance.scripts:main"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/gc-finance"]
